@@ -3,12 +3,38 @@
 	file_put_contents('UIDContainer.php',$Write);
 ?>
 
+<?php 
+        require 'database.php';
+        include 'balanceContainer.php';
+        include 'UIDContainer.php';
+
+        if(isset($_POST['update'])){
+
+        $amount = $_POST['amount'];
+        $id = $UIDresult;
+            
+        $new_balance = $balance + $amount;
+
+        $pdo = Database::connect();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "UPDATE `card`  set balance =? WHERE id =? ";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($new_balance, $id));
+        header("Location: user_data.php");
+            
+    }
+
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="utf-8">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<script src="js/bootstrap.min.js"></script>
 		<script src="jquery.min.js"></script>
 		<script>
@@ -82,49 +108,109 @@
 		<p id="getUID" hidden></p>
 		
 		<br>
-		
-		<div id="show_user_data">
-			<form>
-				<table  width="452" border="1" bordercolor="#10a0c5" align="center"  cellpadding="0" cellspacing="1"  bgcolor="#000" style="padding: 2px">
-					<tr>
-						<td  height="40" align="center"  bgcolor="#10a0c5"><font  color="#FFFFFF">
-							<b>User Data</b>
-							</font>
-						</td>
-					</tr>
-					<tr>
-						<td  bgcolor="#f9f9f9">
-							<table width="452"  border="0" align="center" cellpadding="5"  cellspacing="0">
-								<tr>
-									<td width="113" align="left" class="lf">ID</td>
-									<td style="font-weight:bold">:</td>
-									<td align="left">--------</td>
-								</tr>
-								<tr bgcolor="#f2f2f2">
-									<td align="left" class="lf">Name</td>
-									<td style="font-weight:bold">:</td>
-									<td align="left">--------</td>
-								</tr>
-								<tr>
-									<td align="left" class="lf">Balance</td>
-									<td style="font-weight:bold">:</td>
-									<td align="left">--------</td>
-								</tr>
-								<tr bgcolor="#f2f2f2">
-									<td align="left" class="lf">Email</td>
-									<td style="font-weight:bold">:</td>
-									<td align="left">--------</td>
-								</tr>
-								<tr>
-									<td align="left" class="lf">Mobile Number</td>
-									<td style="font-weight:bold">:</td>
-									<td align="left">--------</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</table>
-			</form>
+		<div class="container">
+           <div class="row">
+               <div class="col-md-6">
+                    <div id="show_user_data">
+                        <form>
+                            <table  width="452" border="1" bordercolor="#10a0c5" align="center"  cellpadding="0" cellspacing="1"  bgcolor="#000" style="padding: 2px">
+                                <tr>
+                                    <td  height="40" align="center"  bgcolor="#10a0c5"><font  color="#FFFFFF">
+                                        <b>User Data</b>
+                                        </font>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td  bgcolor="#f9f9f9">
+                                        <table width="452"  border="0" align="center" cellpadding="5"  cellspacing="0">
+                                            <tr>
+                                                <td width="113" align="left" class="lf">ID</td>
+                                                <td style="font-weight:bold">:</td>
+                                                <td align="left">--------</td>
+                                            </tr>
+                                            <tr bgcolor="#f2f2f2">
+                                                <td align="left" class="lf">Name</td>
+                                                <td style="font-weight:bold">:</td>
+                                                <td align="left">--------</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="lf">Balance</td>
+                                                <td style="font-weight:bold">:</td>
+                                                <td align="left">--------</td>
+                                            </tr>
+                                            <tr bgcolor="#f2f2f2">
+                                                <td align="left" class="lf">Email</td>
+                                                <td style="font-weight:bold">:</td>
+                                                <td align="left">--------</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="lf">Mobile Number</td>
+                                                <td style="font-weight:bold">:</td>
+                                                <td align="left">--------</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a class="btn btn-success" href="user_data_edit_page.php?id='.$row['id'].'">Edit</a></td>
+                                                
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+               </div>
+                <div class="col-md-6">
+                    <form method="POST" name="update" action="read_tag.php">
+                            <table  width="452" border="1" bordercolor="#10a0c5" align="center"  cellpadding="0" cellspacing="1"  bgcolor="#000" style="padding: 2px">
+                                <tr>
+                                    <td  height="40" align="center"  bgcolor="#10a0c5"><font  color="#FFFFFF">
+                                        <b>User Data</b>
+                                        </font>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td  bgcolor="#f9f9f9">
+                                        <table width="452"  border="0" align="center" cellpadding="5"  cellspacing="0">
+                                            <tr>
+                                                <td width="113" align="left" class="lf">Amount</td>
+                                                <td style="font-weight:bold">:</td>
+                                                <td align="left"><input type="number" name="amount"></td>
+                                            </tr>
+                                            <tr bgcolor="#f2f2f2">
+                                                <td align="left" class="lf">Name</td>
+                                                <td style="font-weight:bold">:</td>
+                                                <td align="left">--------</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="lf"></td>
+                                                <td style="font-weight:bold"></td>
+                                                <td align="left"></td>
+                                            </tr>
+                                            <tr bgcolor="#f2f2f2">
+                                                <td align="left" class="lf"></td>
+                                                <td style="font-weight:bold"></td>
+                                                <td align="left"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="lf"></td>
+                                                <td style="font-weight:bold"></td>
+                                                <td align="left"></td>
+                                            </tr>
+                                            <tr>
+                                               
+                                                <td><input type="submit" href="read_tag.php" name="update" value="Update" class="btn btn-success"></td>
+					        
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                            
+                        </form>
+                    
+                </div>
+            </div>
 		</div>
 
 		<script>

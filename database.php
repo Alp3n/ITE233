@@ -4,7 +4,7 @@
 		private static $dbName = 'nodemcu' ;
 		private static $dbHost = 'localhost' ;
 		private static $dbUsername = 'root';
-		private static $dbUserPassword = '';
+		private static $dbUserPassword = '0000';
 
 		private static $cont  = null;
 
