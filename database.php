@@ -1,10 +1,10 @@
 <?php
 	class Database
 	{
-		private static $dbName = 'nodemcu' ;
-		private static $dbHost = 'localhost' ;
+		private static $dbName = 'nodemcu';
+		private static $dbHost = 'localhost';
 		private static $dbUsername = 'root';
-		private static $dbUserPassword = '0000';
+		private static $dbUserPassword = '';
 
 		private static $cont  = null;
 

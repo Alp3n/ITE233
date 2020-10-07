@@ -16,7 +16,7 @@
       
     $pdo = Database::connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "UPDATE `card`  set name = ?, balance =?, email =?, mobile =? WHERE id = ?";
+    $sql = "UPDATE `card`  set `name` = ?, balance =?, email =?, mobile =? WHERE id = ?";
     $q = $pdo->prepare($sql);
     $q->execute(array($name,$balance,$email,$mobile,$id));
 
