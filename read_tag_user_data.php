@@ -48,153 +48,60 @@ if (null == $data['name']) {
 			padding-top: 12px;
 			padding-bottom: 12px;
 		}
+
+		.not-found {
+			display:flex,
+		}
 	</style>
 </head>
 
 <body>
 
 	<div>
-
-		<!-- <form>
-			<table width="452" border="1" bordercolor="#10a0c5" align="center" cellpadding="0" cellspacing="1" bgcolor="#000" style="padding: 2px">
-				<tr>
-					<td height="40" align="center" bgcolor="#10a0c5">
-						<font color="#FFFFFF">
-							<b>User Data</b></font>
-					</td>
-				</tr>
-				<tr>
-					<td bgcolor="#f9f9f9">
-						<table width="452" border="0" align="center" cellpadding="5" cellspacing="0">
-							<tr>
-								<td width="113" align="left" class="lf">ID</td>
-								<td style="font-weight:bold">:</td>
-								<td align="left"><?php echo $data['id']; ?></td>
-							</tr>
-							<tr bgcolor="#f2f2f2">
-								<td align="left" class="lf">Name</td>
-								<td style="font-weight:bold">:</td>
-								<td align="left"><?php echo $data['name']; ?></td>
-							</tr>
-							<tr>
-								<td align="left" class="lf">Balance</td>
-								<td style="font-weight:bold">:</td>
-								<td align="left"><?php echo $data['balance']; ?></td>
-							</tr>
-							<tr bgcolor="#f2f2f2">
-								<td align="left" class="lf">Email</td>
-								<td style="font-weight:bold">:</td>
-								<td align="left"><?php echo $data['email']; ?></td>
-							</tr>
-							<tr>
-								<td align="left" class="lf">Mobile Number</td>
-								<td style="font-weight:bold">:</td>
-								<td align="left"><?php echo $data['mobile']; ?></td>
-							</tr>
-							<tr>
-								<td class="buttons-row">
-									<a class="btn btn-success" href="user_data_edit_page.php?id='.$row['id'].'">Edit</a>
-									<a class="btn btn-info" href="read_tag.php">Clear</a>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-		</form> -->
-		<div class="col-md-6">
-				<div id="show_user_data">
-					<form>
-						<table width="452" border="1" bordercolor="#10a0c5" align="center" cellpadding="0" cellspacing="1" bgcolor="#000" style="padding: 2px">
-							<tr>
-								<td height="40" align="center" bgcolor="#10a0c5">
-									<font color="#FFFFFF">
-										<b>User Data</b>
-									</font>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#f9f9f9">
-									<table width="452" border="0" align="center" cellpadding="5" cellspacing="0">
-										<tr>
-											<td width="113" align="left" class="lf">ID</td>
-											<td style="font-weight:bold">:</td>
-											<td align="left"><?php echo $data['id']; ?></td>
-										</tr>
-										<tr bgcolor="#f2f2f2">
-											<td align="left" class="lf">Name</td>
-											<td style="font-weight:bold">:</td>
-											<td align="left"><?php echo $data['name']; ?></td>
-										</tr>
-										<tr>
-											<td align="left" class="lf">Balance</td>
-											<td style="font-weight:bold">:</td>
-											<td align="left"><?php echo $data['balance']; ?></td>
-										</tr>
-										<tr bgcolor="#f2f2f2">
-											<td align="left" class="lf">Email</td>
-											<td style="font-weight:bold">:</td>
-											<td align="left"><?php echo $data['email']; ?></td>
-										</tr>
-										<tr>
-											<td align="left" class="lf">Mobile Number</td>
-											<td style="font-weight:bold">:</td>
-											<td align="left"><?php echo $data['mobile']; ?></td>
-										</tr>
-										<tr>
-											<td class="buttons-row">
-												<a class="btn btn-success" href="user_data_edit_page.php?id='.$row['id'].'">Edit</a>
-												<a class="btn btn-info" href="read_tag.php">Clear</a>
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-						</table>
-					</form>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<form action="user_data_edit_balance.php?id=<?php echo $data['id']?>" name="update" method="POST">
+		<div class="col-md-12">
+			<div id="show_user_data">
+				<form>
 					<table width="452" border="1" bordercolor="#10a0c5" align="center" cellpadding="0" cellspacing="1" bgcolor="#000" style="padding: 2px">
 						<tr>
 							<td height="40" align="center" bgcolor="#10a0c5">
 								<font color="#FFFFFF">
-									<b>Change Balance</b>
+									<b>User Data</b>
 								</font>
 							</td>
 						</tr>
 						<tr>
 							<td bgcolor="#f9f9f9">
 								<table width="452" border="0" align="center" cellpadding="5" cellspacing="0">
-									<tr></tr>
-										<td width="113" align="left" class="lf">Add Amount</td>
+									<tr>
+										<td width="113" align="left" class="lf">ID</td>
 										<td style="font-weight:bold">:</td>
-										<td align="left"><input type="number" name="amount" min="0" step="1" value="0"></td>
+										<td align="left"><?php echo $data['id']; ?></td>
 									</tr>
 									<tr bgcolor="#f2f2f2">
-										<td align="left" class="lf"></td>
-										<td style="font-weight:bold"></td>
-										<td align="left"></td>
+										<td align="left" class="lf">Name</td>
+										<td style="font-weight:bold">:</td>
+										<td align="left"><?php echo $data['name']; ?></td>
 									</tr>
 									<tr>
-										<td align="left" class="lf"></td>
-										<td style="font-weight:bold"></td>
-										<td align="left"></td>
+										<td align="left" class="lf">Balance</td>
+										<td style="font-weight:bold">:</td>
+										<td align="left"><?php echo $data['balance']; ?></td>
 									</tr>
 									<tr bgcolor="#f2f2f2">
-										<td align="left" class="lf"></td>
-										<td style="font-weight:bold"></td>
-										<td align="left"></td>
+										<td align="left" class="lf">Email</td>
+										<td style="font-weight:bold">:</td>
+										<td align="left"><?php echo $data['email']; ?></td>
 									</tr>
 									<tr>
-										<td align="left" class="lf"></td>
-										<td style="font-weight:bold"></td>
-										<td align="left"></td>
+										<td align="left" class="lf">Mobile Number</td>
+										<td style="font-weight:bold">:</td>
+										<td align="left"><?php echo $data['mobile']; ?></td>
 									</tr>
 									<tr>
-										<td><input type="submit" class="btn btn-success" value="Update"></td>
+										<td class="buttons-row">
+											<a class="btn btn-success" href="user_data_edit_page.php?id='.$row['id'].'">Edit</a>
+											<a class="btn btn-info" href="read_tag.php">Clear</a>
+										</td>
 									</tr>
 								</table>
 							</td>
@@ -202,11 +109,62 @@ if (null == $data['name']) {
 					</table>
 				</form>
 			</div>
+		</div>
+		
+		<div class="col-md-12">
+			<form action="user_data_edit_balance.php?id=<?php echo $data['id']?>" name="update" method="POST">
+				<table width="452" border="1" bordercolor="#10a0c5" align="center" cellpadding="0" cellspacing="1" bgcolor="#000" style="padding: 2px">
+					<tr>
+						<td height="40" align="center" bgcolor="#10a0c5">
+							<font color="#FFFFFF">
+								<b>Change Balance</b>
+							</font>
+						</td>
+					</tr>
+					<tr>
+						<td bgcolor="#f9f9f9">
+							<table width="452" border="0" align="center" cellpadding="5" cellspacing="0">
+								<tr></tr>
+									<td width="113" align="left" class="lf">Add Amount</td>
+									<td style="font-weight:bold">:</td>
+									<td align="left"><input type="number" name="amount" min="0" step="1" value="0"></td>
+								</tr>
+								<tr bgcolor="#f2f2f2">
+									<td align="left" class="lf"></td>
+									<td style="font-weight:bold"></td>
+									<td align="left"></td>
+								</tr>
+								<tr>
+									<td align="left" class="lf"></td>
+									<td style="font-weight:bold"></td>
+									<td align="left"></td>
+								</tr>
+								<tr bgcolor="#f2f2f2">
+									<td align="left" class="lf"></td>
+									<td style="font-weight:bold"></td>
+									<td align="left"></td>
+								</tr>
+								<tr>
+									<td align="left" class="lf"></td>
+									<td style="font-weight:bold"></td>
+									<td align="left"></td>
+								</tr>
+								<tr>
+									<td><input type="submit" class="btn btn-success" value="Update"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
 
-	</div>
-	<p style="color:red;"><?php echo $msg; ?></p>
+
+		<div class="not-found">
+			<p style="color:red;"><?php echo $msg; ?></p>
+		</div>
+	</div>	
+	
 </body>
-
-<!-- <?php echo $data['id']; ?> -->
 
 </html>

@@ -1,41 +1,23 @@
 <?php
-$Write = "<?php $" . "UIDresult=''; " . "echo $" . "UIDresult;" . " ?>";
-file_put_contents('UIDContainer.php', $Write);
-$Write2="<?php $" . "balance=''; " . "echo $" . "balance;" . " ?>";
-    file_put_contents('balanceContainer.php', $write);
+	$Write = "<?php $" . "UIDresult=''; " . "echo $" . "UIDresult;" . " ?>";
+	file_put_contents('UIDContainer.php', $Write);
 ?>
 
 <?php
-require 'database.php';
+	require 'database.php';
 
-// require 'database.php';
-$id = null;
-if (!empty($_GET['id'])) {
-	$id = $_REQUEST['id'];
-}
+	$id = null;
+	if (!empty($_GET['id'])) {
+		$id = $_REQUEST['id'];
+	}
 
-$pdo = Database::connect();
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = "SELECT * FROM `card` where id = ?";
-$q = $pdo->prepare($sql);
-$q->execute(array($id));
-$data = $q->fetch(PDO::FETCH_ASSOC);
-Database::disconnect();
-
-// if(isset($_POST['update'])){
-
-// 	$amount = $_POST['amount'];
-// 	$id = $UIDresult;
-
-// 	$new_balance = $balance + $amount;
-
-// 	$pdo = Database::connect();
-// 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-// 	$sql = "UPDATE `card`set balance =? WHERE id =? ";
-// 	$q = $pdo->prepare($sql);
-// 	$q->execute(array($new_balance, $id));
-// 	header("Location: user_data.php");   
-// }
+	$pdo = Database::connect();
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$sql = "SELECT * FROM `card` where id = ?";
+	$q = $pdo->prepare($sql);
+	$q->execute(array($id));
+	$data = $q->fetch(PDO::FETCH_ASSOC);
+	Database::disconnect();
 ?>
 
 <!DOCTYPE html>
@@ -118,6 +100,12 @@ Database::disconnect();
 		a.btn-info {
 			margin-left: 15px;
 		}
+
+		.not-found {
+			display: flex;
+			justify-content: center;
+			align-content: center;
+		}
 	</style>
 
 	<title>Read Tag : NodeMCU</title>
@@ -141,7 +129,7 @@ Database::disconnect();
 	
 	<div class="container">
 		<div class="row change-row">
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div id="show_user_data">
 					<form>
 						<table width="452" border="1" bordercolor="#10a0c5" align="center" cellpadding="0" cellspacing="1" bgcolor="#000" style="padding: 2px">
@@ -193,54 +181,6 @@ Database::disconnect();
 					</form>
 				</div>
 			</div>
-
-			<!-- <div class="col-md-6">
-				<form action="user_data_edit_balance.php?id=<?php echo $id ?>" method="post">
-					<table width="452" border="1" bordercolor="#10a0c5" align="center" cellpadding="0" cellspacing="1" bgcolor="#000" style="padding: 2px">
-						<tr>
-							<td height="40" align="center" bgcolor="#10a0c5">
-								<font color="#FFFFFF">
-									<b>Change Balance</b>
-								</font>
-							</td>
-						</tr>
-						<tr>
-							<td bgcolor="#f9f9f9">
-								<table width="452" border="0" align="center" cellpadding="5" cellspacing="0">
-									<tr></tr>
-										<td width="113" align="left" class="lf">Balance</td>
-										<td style="font-weight:bold">:</td>
-										<td align="left"><input type="number" name="balance" min="0" step="1" value="<?php echo $data['balance'] ?>"></td>
-									</tr>
-									<tr bgcolor="#f2f2f2">
-										<td align="left" class="lf"></td>
-										<td style="font-weight:bold"></td>
-										<td align="left"></td>
-									</tr>
-									<tr>
-										<td align="left" class="lf"></td>
-										<td style="font-weight:bold"></td>
-										<td align="left"></td>
-									</tr>
-									<tr bgcolor="#f2f2f2">
-										<td align="left" class="lf"></td>
-										<td style="font-weight:bold"></td>
-										<td align="left"></td>
-									</tr>
-									<tr>
-										<td align="left" class="lf"></td>
-										<td style="font-weight:bold"></td>
-										<td align="left"></td>
-									</tr>
-									<tr>
-										<td><input type="submit" class="btn btn-success"></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</div> -->
 		</div>
 	</div>
 
@@ -275,9 +215,6 @@ Database::disconnect();
 				if (window.XMLHttpRequest) {
 					// code for IE7+, Firefox, Chrome, Opera, Safari
 					xmlhttp = new XMLHttpRequest();
-				} else {
-					// code for IE6, IE5
-					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 				}
 				xmlhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
